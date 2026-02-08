@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>日帰りドライブ生成</title>
+</head>
+<body>
+  <h2>日帰りドライブ</h2>
+
+    <label>
+        <input type="radio" name="duration" value="half" checked>
+        半日
+    </label>
+    <label>
+        <input type="radio" name="duration" value="day">
+        日帰り
+    </label>
+
+    <br><br>
+
+  <button onclick="generate()">ルートを生成</button>
+
+  <script>
+    function getDuration() {
+    return document.querySelector('input[name="duration"]:checked').value;
+    }
+
+
+    function generate() {
+      const origin = "伊勢原駅";
+      const duration = getDuration();
+      console.log("選択された時間:", duration);
+      
+      const targetsHalf = ["道の駅どうし", "三浦半島"];
+      const targetsDay  = ["西伊豆スカイライン", "箱根 芦ノ湖"];
+
+      const targets =
+        duration === "half" ? targetsHalf : targetsDay;
+
+      const target = targets[Math.floor(Math.random() * targets.length)];
+
+      const url =
+        "https://www.google.com/maps/dir/?api=1" +
+        "&origin=" + encodeURIComponent(origin) +
+        "&destination=" + encodeURIComponent(target) +
+        "&travelmode=driving";
+
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>
