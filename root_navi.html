@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>日帰りドライブ生成</title>
+</head>
+<body>
+  <h2>日帰りドライブ</h2>
+  <button onclick="generate()">ルートを生成</button>
+
+  <script>
+    function generate() {
+      const origin = "伊勢原駅";
+
+      const targets = [
+        "道の駅どうし",
+        "箱根 芦ノ湖",
+        "西伊豆スカイライン",
+        "三浦半島"
+      ];
+
+      const target = targets[Math.floor(Math.random() * targets.length)];
+
+      const url =
+        "https://www.google.com/maps/dir/?api=1" +
+        "&origin=" + encodeURIComponent(origin) +
+        "&destination=" + encodeURIComponent(target) +
+        "&travelmode=driving";
+
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>
